@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">pomodoro</string>
+    <string name="pausar">Pausar</string>
+    <string name="continuar">Continuar</string>
+</resources>
