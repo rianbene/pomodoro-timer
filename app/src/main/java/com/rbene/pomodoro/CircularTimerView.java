@@ -43,9 +43,9 @@ public class CircularTimerView extends View {
         // Fundo completo
         canvas.drawCircle(cx, cy, radius, bgPaint);
 
-        // Arco decrescente
-        float sweepAngle = 360f * progress;
+        // Arco no sentido anti-horário
+        float sweepAngle = 360f * (1 - progress);
         canvas.drawArc(cx - radius, cy - radius, cx + radius, cy + radius,
-                90, sweepAngle, false, fgPaint);
+                -90, sweepAngle, false, fgPaint);
     }
 }
