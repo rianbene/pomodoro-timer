@@ -27,7 +27,7 @@ public class TimerActivity extends AppCompatActivity {
         txtTime = findViewById(R.id.txtTime);
         txtStatus = findViewById(R.id.txtStatus);
         btnPlayPause = findViewById(R.id.btnPlayPause);
-
+        //Valores padrão do pomodoro
         int focus = getIntent().getIntExtra("focus", 25);
         int shortBreak = getIntent().getIntExtra("shortBreak", 5);
         int longBreak = getIntent().getIntExtra("longBreak", 15);
@@ -45,12 +45,12 @@ public class TimerActivity extends AppCompatActivity {
     private void startCycle() {
         millisRemaining = manager.getCurrentDurationMinutes() * 60_000L;
         totalMillis = millisRemaining;
-        txtStatus.setText(manager.getState().toString());
+        txtStatus.setText(manager.getState().toString()); // o texto que aparece embaixo do timer
         startTimer();
     }
 
     private void startTimer() {
-        timer = new CountDownTimer(millisRemaining, 1000) {
+        timer = new CountDownTimer(millisRemaining, 50) {
             public void onTick(long millisUntilFinished) {
                 millisRemaining = millisUntilFinished;
                 updateUI();

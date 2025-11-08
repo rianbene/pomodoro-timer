@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
 
     <EditText
         android:id="@+id/edtFocus"
-        android:hint="Tempo de foco (min)"
-        android:inputType="number"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="Tempo de foco (min) - Padrão 25 min"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/edtShortBreak"
-        android:hint="Descanso curto (min)"
-        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:hint="Descanso curto (min) - Padrão 5 min"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/edtLongBreak"
-        android:hint="Descanso longo (min)"
-        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:hint="Descanso longo (min) - Padrão 15 min"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/btnStart"
-        android:text="Iniciar Pomodoro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="32dp"
+        android:text="Iniciar Pomodoro" />
 
 </LinearLayout>
