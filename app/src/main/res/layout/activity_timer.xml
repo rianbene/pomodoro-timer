@@ -36,7 +36,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtStatus"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="25dp"
         android:text="Pausar" />
+
+    <Button
+        android:id="@+id/btnSkipCycle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnPlayPause"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#E039A0"
+        android:text="Pular ciclo" />
 
 </RelativeLayout>

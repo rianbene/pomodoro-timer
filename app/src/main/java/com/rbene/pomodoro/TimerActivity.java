@@ -11,6 +11,7 @@ public class TimerActivity extends AppCompatActivity {
     private CircularTimerView circularView;
     private TextView txtTime, txtStatus;
     private Button btnPlayPause;
+    private Button btnSkipCycle;
 
     private PomodoroManager manager;
     private CountDownTimer timer;
@@ -27,6 +28,7 @@ public class TimerActivity extends AppCompatActivity {
         txtTime = findViewById(R.id.txtTime);
         txtStatus = findViewById(R.id.txtStatus);
         btnPlayPause = findViewById(R.id.btnPlayPause);
+        btnSkipCycle = findViewById(R.id.btnSkipCycle);
         //Valores padrão do pomodoro
         int focus = getIntent().getIntExtra("focus", 25);
         int shortBreak = getIntent().getIntExtra("shortBreak", 5);
@@ -39,6 +41,10 @@ public class TimerActivity extends AppCompatActivity {
         btnPlayPause.setOnClickListener(v -> {
             if (isRunning) pauseTimer();
             else resumeTimer();
+        });
+
+        btnSkipCycle.setOnClickListener(v -> {
+            skipCycle();
         });
     }
 
@@ -68,6 +74,15 @@ public class TimerActivity extends AppCompatActivity {
         timer.cancel();
         isRunning = false;
         btnPlayPause.setText(R.string.continuar);
+    }
+
+    //Metodo pular ciclo.
+    private void skipCycle(){
+        if(isRunning) {
+            timer.cancel();
+            manager.nextState();
+            startCycle();
+        }
     }
 
     private void resumeTimer() {
