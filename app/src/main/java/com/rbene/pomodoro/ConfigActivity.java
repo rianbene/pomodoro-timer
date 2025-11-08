@@ -22,14 +22,22 @@ public class ConfigActivity extends AppCompatActivity {
         btnStart = findViewById(R.id.btnStart);
 
         btnStart.setOnClickListener(v -> {
-            int focus = Integer.parseInt(edtFocus.getText().toString());
-            int shortBreak = Integer.parseInt(edtShortBreak.getText().toString());
-            int longBreak = Integer.parseInt(edtLongBreak.getText().toString());
-
             Intent i = new Intent(this, TimerActivity.class);
-            i.putExtra("focus", focus);
-            i.putExtra("shortBreak", shortBreak);
-            i.putExtra("longBreak", longBreak);
+
+            String focusText = edtFocus.getText().toString().trim();
+            String shortBreakText = edtShortBreak.getText().toString().trim();
+            String longBreakText = edtLongBreak.getText().toString().trim();
+
+            if (!focusText.isEmpty()) {
+                i.putExtra("focus", Integer.parseInt(focusText));
+            }
+            if (!shortBreakText.isEmpty()) {
+                i.putExtra("shortBreak", Integer.parseInt(shortBreakText));
+            }
+            if (!longBreakText.isEmpty()) {
+                i.putExtra("longBreak", Integer.parseInt(longBreakText));
+            }
+
             startActivity(i);
         });
     }
