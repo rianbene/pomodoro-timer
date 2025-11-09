@@ -13,8 +13,7 @@ public class TimerActivity extends AppCompatActivity {
     private Button btnPlayPause;
     private Button btnSkipCycle;
 
-    private PomodoroManager manager;
-    private int ciclo = 0;
+    private PomodoroManager manager;s
     private CountDownTimer timer;
     private boolean isRunning = false;
     private long millisRemaining;
