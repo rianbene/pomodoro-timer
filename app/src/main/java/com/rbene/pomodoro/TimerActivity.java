@@ -14,6 +14,7 @@ public class TimerActivity extends AppCompatActivity {
     private Button btnSkipCycle;
 
     private PomodoroManager manager;
+    private int ciclo = 0;
     private CountDownTimer timer;
     private boolean isRunning = false;
     private long millisRemaining;
@@ -64,6 +65,8 @@ public class TimerActivity extends AppCompatActivity {
             public void onFinish() {
                 manager.nextState();
                 startCycle();
+                pauseTimer();
+                updateUI();
             }
         }.start();
         isRunning = true;
