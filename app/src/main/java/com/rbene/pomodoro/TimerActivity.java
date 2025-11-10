@@ -53,10 +53,21 @@ public class TimerActivity extends AppCompatActivity {
     private void startCycle() {
         millisRemaining = manager.getCurrentDurationMinutes() * 60_000L;
         totalMillis = millisRemaining;
-        txtStatus.setText(manager.getState().toString()); // o texto que aparece embaixo do timer
+        txtStatus.setText(getStateText(manager.getState())); // traduzido
         startTimer();
     }
-
+    private String getStateText(PomodoroManager.State state) {
+        switch (state) {
+            case FOCUS:
+                return "Pomodoro";
+            case SHORT_BREAK:
+                return "Descanso curto";
+            case LONG_BREAK:
+                return "Descanso longo";
+            default:
+                return "";
+        }
+    }
     private void startTimer() {
         timer = new CountDownTimer(millisRemaining, 50) {
             public void onTick(long millisUntilFinished) {
@@ -66,6 +77,8 @@ public class TimerActivity extends AppCompatActivity {
             public void onFinish() {
                 manager.nextState();
                 startCycle();
+                pauseTimer();
+                updateUI();
                 MediaPlayer mp = MediaPlayer.create(thisActivity, R.raw.beep);
                 mp.start();
             }

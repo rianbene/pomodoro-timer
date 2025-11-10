@@ -1,9 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:padding="32dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="Ciclo Atual"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <com.rbene.pomodoro.CircularTimerView
         android:id="@+id/circularView"
@@ -27,7 +36,7 @@
         android:layout_below="@id/txtTime"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="FOCUS"
+        android:text="nome do ciclo"
         android:textSize="18sp" />
 
     <Button
@@ -37,7 +46,7 @@
         android:layout_below="@id/txtStatus"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:text="Pausar" />
+        android:text="Continuar/Pausar" />
 
     <Button
         android:id="@+id/btnSkipCycle"
