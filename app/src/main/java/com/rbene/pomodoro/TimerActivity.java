@@ -16,9 +16,9 @@ public class TimerActivity extends AppCompatActivity {
     private Button btnSkipCycle;
     private PomodoroManager manager;
     private CountDownTimer timer;
-    private boolean isRunning = false;
-    private long millisRemaining;
-    private long totalMillis;
+    private boolean estaAtivo = false;
+    private long milisegRestante;
+    private long milisegTotal;
     private final Context thisActivity = this;
 
     @Override
@@ -38,23 +38,23 @@ public class TimerActivity extends AppCompatActivity {
 
         manager = new PomodoroManager(focus, shortBreak, longBreak);
 
-        startCycle();
+        iniciaCiclo();
 
         btnPlayPause.setOnClickListener(v -> {
-            if (isRunning) pauseTimer();
-            else resumeTimer();
+            if (estaAtivo) pausarTimer();
+            else iniciaTimer();
         });
 
         btnSkipCycle.setOnClickListener(v -> {
-            skipCycle();
+            pularCiclo();
         });
     }
 
-    private void startCycle() {
-        millisRemaining = manager.getCurrentDurationMinutes() * 60_000L;
-        totalMillis = millisRemaining;
+    private void iniciaCiclo() {
+        milisegRestante = manager.getCurrentDurationMinutes() * 60_000L;
+        milisegTotal = milisegRestante;
         txtStatus.setText(getStateText(manager.getState())); // traduzido
-        startTimer();
+        iniciaTimer();
     }
     private String getStateText(PomodoroManager.State state) {
         switch (state) {
@@ -68,50 +68,46 @@ public class TimerActivity extends AppCompatActivity {
                 return "";
         }
     }
-    private void startTimer() {
-        timer = new CountDownTimer(millisRemaining, 50) {
+    private void iniciaTimer() {
+        timer = new CountDownTimer(milisegRestante, 50) {
             public void onTick(long millisUntilFinished) {
-                millisRemaining = millisUntilFinished;
-                updateUI();
+                milisegRestante = millisUntilFinished;
+                atualizaInterface();
             }
             public void onFinish() {
-                manager.nextState();
-                startCycle();
-                pauseTimer();
-                updateUI();
+                manager.proximoEstado();
+                iniciaCiclo();
+                pausarTimer();
+                atualizaInterface();
                 MediaPlayer mp = MediaPlayer.create(thisActivity, R.raw.beep);
                 mp.start();
             }
         }.start();
-        isRunning = true;
+        estaAtivo = true;
         btnPlayPause.setText(R.string.pausar);
     }
 
-    private void pauseTimer() {
+    private void pausarTimer() {
         timer.cancel();
-        isRunning = false;
+        estaAtivo = false;
         btnPlayPause.setText(R.string.continuar);
     }
 
     //Metodo pular ciclo.
-    private void skipCycle(){
-        if(isRunning) {
+    private void pularCiclo(){
+        if(estaAtivo) {
             timer.cancel();
-            manager.nextState();
-            startCycle();
+            manager.proximoEstado();
+            iniciaCiclo();
         }
     }
 
-    private void resumeTimer() {
-        startTimer();
-    }
+    private void atualizaInterface() {
+        int minutos = (int) (milisegRestante / 1000) / 60;
+        int segundos = (int) (milisegRestante / 1000) % 60;
+        txtTime.setText(String.format("%02d:%02d", minutos, segundos));
 
-    private void updateUI() {
-        int seconds = (int) (millisRemaining / 1000) % 60;
-        int minutes = (int) (millisRemaining / 1000) / 60;
-        txtTime.setText(String.format("%02d:%02d", minutes, seconds));
-
-        float progress = 1f - (float) millisRemaining / totalMillis;
+        float progress = 1f - (float) milisegRestante / milisegTotal;
         circularView.setProgress(progress);
     }
 }

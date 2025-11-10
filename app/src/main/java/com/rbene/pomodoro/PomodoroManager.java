@@ -5,8 +5,8 @@ public class PomodoroManager {
     public enum State { FOCUS, SHORT_BREAK, LONG_BREAK }
 
     private int focusTime, shortBreakTime, longBreakTime;
-    private int cycleCount = 0;
-    private State currentState = State.FOCUS;
+    private int numCiclos = 0;
+    private State estadoAtual = State.FOCUS;
 
     public PomodoroManager(int focus, int shortBreak, int longBreak) {
         this.focusTime = focus;
@@ -15,11 +15,11 @@ public class PomodoroManager {
     }
 
     public State getState() {
-        return currentState;
+        return estadoAtual;
     }
 
     public int getCurrentDurationMinutes() {
-        switch (currentState) {
+        switch (estadoAtual) {
             case FOCUS: return focusTime;
             case SHORT_BREAK: return shortBreakTime;
             case LONG_BREAK: return longBreakTime;
@@ -27,17 +27,13 @@ public class PomodoroManager {
         return focusTime;
     }
 
-    public void nextState() {
-        if (currentState == State.FOCUS) {
-            cycleCount++;
-            if (cycleCount % 4 == 0) currentState = State.LONG_BREAK;
-            else currentState = State.SHORT_BREAK;
+    public void proximoEstado() {
+        if (estadoAtual == State.FOCUS) {
+            numCiclos++;
+            if (numCiclos % 4 == 0) {estadoAtual = State.LONG_BREAK;}
+            else {estadoAtual = State.SHORT_BREAK;};
         } else {
-            currentState = State.FOCUS;
+            estadoAtual = State.FOCUS;
         }
-    }
-
-    public int getCycleCount() {
-        return cycleCount;
     }
 }

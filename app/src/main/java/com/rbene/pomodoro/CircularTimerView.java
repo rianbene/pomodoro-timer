@@ -9,7 +9,7 @@ import android.view.View;
 public class CircularTimerView extends View {
 
     private float progress = 0f; // 0 a 1
-    private Paint bgPaint, fgPaint;
+    private Paint bgPaint, fgPaint; //Paint "background" e "frontground"
 
     public CircularTimerView(Context context, AttributeSet attrs) {
         super(context, attrs);

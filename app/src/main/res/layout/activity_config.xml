@@ -24,14 +24,14 @@
         <EditText
             android:id="@+id/edtFocus"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:hint="Tempo de foco (min) - Padrão 25 min"
             android:inputType="number" />
 
         <EditText
             android:id="@+id/edtShortBreak"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:hint="Descanso curto (min) - Padrão 5 min"
             android:inputType="number" />
@@ -39,7 +39,7 @@
         <EditText
             android:id="@+id/edtLongBreak"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:hint="Descanso longo (min) - Padrão 15 min"
             android:inputType="number" />
