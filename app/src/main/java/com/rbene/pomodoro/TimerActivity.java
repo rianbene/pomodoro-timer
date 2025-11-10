@@ -64,6 +64,8 @@ public class TimerActivity extends AppCompatActivity {
             public void onFinish() {
                 manager.nextState();
                 startCycle();
+                pauseTimer();
+                updateUI();
             }
         }.start();
         isRunning = true;
