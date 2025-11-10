@@ -1,5 +1,7 @@
 package com.rbene.pomodoro;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.Button;
@@ -12,12 +14,12 @@ public class TimerActivity extends AppCompatActivity {
     private TextView txtTime, txtStatus;
     private Button btnPlayPause;
     private Button btnSkipCycle;
-
     private PomodoroManager manager;
     private CountDownTimer timer;
     private boolean isRunning = false;
     private long millisRemaining;
     private long totalMillis;
+    private final Context thisActivity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,8 @@ public class TimerActivity extends AppCompatActivity {
                 startCycle();
                 pauseTimer();
                 updateUI();
+                MediaPlayer mp = MediaPlayer.create(thisActivity, R.raw.beep);
+                mp.start();
             }
         }.start();
         isRunning = true;
