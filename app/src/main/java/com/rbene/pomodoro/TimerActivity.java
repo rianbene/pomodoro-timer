@@ -57,11 +57,11 @@ public class TimerActivity extends AppCompatActivity {
     private String getStateText(PomodoroManager.State state) {
         switch (state) {
             case FOCUS:
-                return "POMODORO";
+                return "Pomodoro";
             case SHORT_BREAK:
-                return "DESCANSO CURTO";
+                return "Descanso curto";
             case LONG_BREAK:
-                return "DESCANSO LONGO";
+                return "Descanso longo";
             default:
                 return "";
         }
